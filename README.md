@@ -83,3 +83,7 @@ Attinylock requires a stable 12-15V power source, typically supplied via a mains
 
 ## Software & Libraries
 The Attinylock codebase includes necessary libraries for NFC functionality, motor control, and feedback management. Users should refer to the documentation for installing and setting up the required software.
+
+## Ongoing Development: Compact SMT PCB Design
+The current prototype has operated flawlessly for the past three years, proving its reliability in real-world conditions. We are now in the process of developing a surface-mount technology (SMT) PCB that fits directly onto the face of the NEMA17 stepper motor. This new design will significantly reduce the system's overall size and complexity, providing a more efficient and compact form factor. The PCB will integrate all necessary components, offering a streamlined solution that maintains the functionality of the original design while improving installation ease and astetics while reducing wiring clutter.
+
