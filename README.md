@@ -96,7 +96,6 @@ Design Complexity: Trying to shield the PCB antenna or create a workaround to mi
 Cost Considerations: The addition of WiFi modules and the related circuitry not only increased the manufacturing cost but also introduced more points of potential failure in the system, such as signal loss or software bugs in the WiFi handling code.
 Power Consumption: Maintaining a WiFi connection requires more power, which could strain the power supply, 
 
-
 To ensure a more robust, cost-effective, and power-efficient solution, the team decided to drop the WiFi feature in favor of using a UPDI programmer to re-upload the firmware when UID updates are required. This approach ensures that:
 
 The system remains simpler to manufacture and assemble, reducing wiring clutter and potential failure points.
@@ -106,9 +105,6 @@ The overall cost and power requirements of the system are minimized, making Atti
 ## Why the Stepper Motor Was Chosen
 The NEMA17 pancake stepper motor was chosen for Attinylock primarily due to its ability to provide sufficient torque for locking and unlocking the door, while also offering the benefit of free rotation when the motor is not energized. This feature ensures that traditional key access is unhindered, allowing users to manually turn the lock without the motor obstructing or resisting the movement.
 
-
-Free Rotation When Not in Use:
-
 Unlike servos or smaller geared motors, stepper motors have the unique advantage of being able to freewheel when not powered. In Attinylock’s case, this allows the euro cylinder lock to be rotated manually with a key, even when the system is powered off or idle.
 Manual Override: This feature is critical for retaining the traditional key functionality, ensuring that users can always lock or unlock the door manually without encountering resistance from the motor. Servos, by contrast, maintain a fixed position when not in use and would resist manual turning, making them less suitable for this application.
 Sufficient Torque for Locking Mechanism:
@@ -116,13 +112,11 @@ Sufficient Torque for Locking Mechanism:
 The torque provided by the NEMA17 stepper motor ensures that the lock mechanism can be reliably rotated to engage or disengage the lock. Euro cylinder locks, especially in older or more complex mechanisms, can sometimes require extra force to turn due to tight tolerances or environmental factors (e.g., temperature changes causing metal parts to expand).
 By using a stepper motor, Attinylock is capable of delivering the necessary rotational force without sacrificing precision, ensuring that the lock turns smoothly and reliably every time.
 Balance of Torque and Power Consumption: The NEMA17 motor provides an optimal balance of torque and power consumption, ensuring that the motor can lock and unlock the door effectively without drawing excessive power, which is important for the system's power supply management.
-Precise and Reversible Control:
 
 Stepper motors are designed to move in discrete steps, which makes them ideal for applications requiring precise control over position. This ensures that Attinylock can:
 Lock and unlock with exact rotational precision, aligning the lock perfectly after each operation.
 Switch directions easily to either engage or disengage the lock based on the input signal from the NFC reader, with no need for additional sensors to determine the position of the motor.
 Servos, on the other hand, would require continuous feedback to achieve the same level of precision, adding complexity to the system and increasing the chances of failure due to misalignment or over-rotation.
-Less Mechanical Wear:
 
 Since stepper motors do not have the gearing commonly found in smaller motors or servos, there are fewer moving parts that can wear out over time. This results in a more durable system, which is essential for a smart lock expected to perform reliably over the long term.
 Geared motors can wear out over time as their mechanical gears degrade, which could introduce slack or inaccuracies in the locking mechanism, leading to eventual failure. By avoiding this, the NEMA17 stepper motor helps maintain the long-term integrity of the Attinylock system.
@@ -131,12 +125,11 @@ Servo Motors: Servo motors hold their position unless powered down or explicitly
 
 Geared Motors: Geared motors often have a higher torque than servos but come with the drawback of mechanical resistance due to the gear train, even when not powered. This resistance would interfere with manual key use and could cause wear over time, reducing reliability. Geared motors are also less precise without a feedback system and may not provide the same level of control required for precise locking operations.
 
-Flexibility and Safety:
 The free-rotating feature of the stepper motor ensures that manual access remains fully functional even if there’s a power failure or if the motor is offline for any reason. This design choice adds an extra layer of safety and reliability, allowing users to fall back on traditional key-based access if needed.
 
 By using the stepper motor, you’ve also allowed for simple and safe manual operation, meaning that users can still feel confident that they will never be locked out due to mechanical failures or system malfunctions.
 
-##Why ATtiny1616?
+## Why ATtiny1616?
 
 Low Power Consumption: The ATtiny1616 is a microcontroller from the AVR family, known for its efficiency in power-constrained applications. This ensures that the system can operate reliably even in environments where power conservation is important.
 Sufficient I/O Ports: With its 16 pins, the ATtiny1616 provides enough general-purpose input/output (GPIO) for all the components in Attinylock (NFC reader, stepper motor driver, RGB LED, buzzer, toggle switch, etc.).
@@ -151,34 +144,33 @@ Ease of Integration: The module supports I2C, SPI, and UART interfaces, making i
 UID Reading Accuracy: The PN532 can accurately and quickly read ISO/IEC 14443 Type A/B cards, ensuring seamless user experience when scanning NFC tags for lock/unlock operations.
 Wide Range of NFC Options: It supports different types of NFC media, such as cards, key fobs, and even implants, which adds to the system’s versatility in access control.
 
-Why 12-15V Power Supply?
+## Why 12-15V Power Supply?
 
 Stepper Motor Power Requirements: Stepper motors, especially those like the NEMA17, require a higher voltage than typical low-power microcontrollers. A 12-15V power supply ensures that the motor receives enough power to operate reliably without stalling.
 Buck Converter Compatibility: This voltage range is compatible with the AP63203 buck converter, which steps down the voltage to levels suitable for powering the microcontroller and other low-power components.
 
-Why AP63203 Buck Converter?
+## Why AP63203 Buck Converter?
 
 High Efficiency: The AP63203 is a synchronous step-down converter known for its high efficiency, which minimizes heat generation and power loss during operation. This is important for ensuring stable power delivery, especially during the stepper motor’s high-current demands.
 Compact Design: Its small size fits well within the compact PCB layout of Attinylock, minimizing overall system size and making installation easier.
 Wide Input Voltage Range: It can accept input voltages between 3.8V and 32V, making it versatile for a range of power supplies and ensuring stable operation even if the input voltage fluctuates slightly.
 
-Why WS2812b RGB LED?
+## Why WS2812b RGB LED?
 
 Single-Wire Communication: The WS2812b uses a single-wire communication protocol, meaning fewer GPIO pins are needed to control it, freeing up pins on the ATtiny1616 for other tasks.
 Customizable Colors: This LED can display millions of colors, allowing for easily customizable feedback signals, such as green for successful unlocks or red for errors.
 Power Efficiency: It is relatively low-power, making it a good choice for providing feedback without significantly increasing the system's overall power consumption.
 
-Why 5020 Buzzer?
+## Why 5020 Buzzer?
 
 Simple, Effective Feedback: The buzzer can emit audible tones to quickly alert the user of the system’s status, adding an extra layer of feedback beyond the LED.
 Low Power Consumption: This buzzer consumes very little power, making it an excellent fit for Attinylock, where power efficiency is important.
 Compact Size: Its small size allows it to fit easily into the system’s compact design.
 
-Why Pogo Pin Toggle Switch?
+## Why Pogo Pin Toggle Switch?
 
 Mechanical Flexibility: Pogo pins are spring-loaded, ensuring reliable contact even in slightly misaligned or moving parts. This makes them well-suited for detecting mechanical movements like the rotation of a lock.
 Durability: Pogo pins are designed to endure repeated engagements, making them durable enough for frequent locking and unlocking operations without wearing out.
 Accurate State Detection: The toggle switch ensures that the system always knows the current state of the lock, preventing errors like attempting to re-lock an already locked door or unlock an already unlocked door.
-
 
 Each hardware component in Attinylock was carefully selected based on its ability to meet the design goals of reliability, precision, cost-effectiveness, and user-friendly functionality. By choosing components like the NEMA17 stepper motor, ATtiny1616 microcontroller, and PN532 NFC reader, the system ensures smooth, efficient, and flexible access control, all while retaining traditional manual key functionality.
