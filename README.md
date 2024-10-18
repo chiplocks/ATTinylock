@@ -2,6 +2,8 @@
 
 **Attinylock** is an NFC-controlled smart lock designed to compliment traditional key access to a euro cylinder barrel lock on a UPVC door. It uses NFC technology to scan UIDs and commands a stepper motor to lock or unlock the door based on user input. With Attinylock, you can streamline your door locking mechanism and increase convenience by eliminating the need for physical keys.
 
+https://github.com/user-attachments/assets/20a3cf1a-0669-4bbe-a43e-0daaa2c50a40
+
 ![image](https://github.com/user-attachments/assets/6ef4d7ab-96e4-4bea-9226-0243cf697907)
 
 
