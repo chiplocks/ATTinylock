@@ -4,7 +4,7 @@ Attinylock is an NFC-enabled smart lock system designed to integrate with existi
 
 https://github.com/user-attachments/assets/20a3cf1a-0669-4bbe-a43e-0daaa2c50a40
 
-![image](https://github.com/user-attachments/assets/6ef4d7ab-96e4-4bea-9226-0243cf697907)
+
 
 
 ## Key Features 
